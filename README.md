@@ -49,3 +49,7 @@ After training for 3.9 minutes on 1536 cores this agent learns to defeat Atari P
 ![Training reward over time at 1536 cores](Training chart at 1536 cores.png)
 
 Note that the training reward is averaged over 2 second windows (see the blog post for more details). The test reward when played out over an entire game (first to 21 points) continues to increase with additional training time.
+
+## Video
+
+An agent trained for 28 minutes on 1536 cores [looks like this](https://youtu.be/0Pu1TArOeRM).
