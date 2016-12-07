@@ -1,26 +1,27 @@
 # ppg-pong
-Using Parallel Policy Gradients (via MPI) to learn to play Atari Pong
+Using Parallel Policy Gradients with MPI and few dependencies to learn to play Atari Pong. It's really fast and despite being a ridiculously simple neural network it learns to defeat Pong in less than 5 minutes (on 1536 cores).
 
-Based on Andrej Karpathy's excellent example code: 
+This simple implementation is based on Andrej Karpathy's excellent example code: 
     https://gist.github.com/karpathy/a4166c7fe253700972fcbc77e4ea32c5
 
-Adapted for MPI parallelism by Mark O'Connor:
-    https://www.allinea.com/blog/201610/deep-learning-episode-4-supercomputer-vs-pong-ii
+You can read more details in the blog post here:
+    https://www.allinea.com/blog/201610/deep-learning-episode-3-supercomputer-vs-pong
 
-# Dependencies
+## Dependencies
 
 - Numpy
 - mpi4py
 - OpenAI Gym
 
-# Example
+## Example
 
-   $ mpirun -n 4 python ppg-pong.py
-   [2016-12-07 08:28:50,733] Making new env: Pong-v0
-   [2016-12-07 08:28:50,735] Making new env: Pong-v0
-   [2016-12-07 08:28:50,735] Making new env: Pong-v0
-   [2016-12-07 08:28:50,736] Making new env: Pong-v0
-   Running with 4 processes
+```
+$ mpirun -n 4 python ppg-pong.py
+[2016-12-07 08:28:50,733] Making new env: Pong-v0
+[2016-12-07 08:28:50,735] Making new env: Pong-v0
+[2016-12-07 08:28:50,735] Making new env: Pong-v0
+[2016-12-07 08:28:50,736] Making new env: Pong-v0
+Running with 4 processes
      2, 0000002675 steps @   1054/s: -10.8 | -10.7500 @ 1.0e-03 lr, 10750.0 r/Kup
      4, 0000005207 steps @   1047/s: -10.2 | -10.7250 @ 1.0e-03 lr,   500.0 r/Kup
      7, 0000007745 steps @   1045/s: -10.0 | -10.6887 @ 1.0e-03 lr,   625.0 r/Kup
@@ -41,5 +42,10 @@ Adapted for MPI parallelism by Mark O'Connor:
    104, 0000109107 steps @   1045/s:  -7.5 |  -9.4915 @ 1.0e-03 lr,    32.2 r/Kup
    106, 0000111613 steps @   1045/s:  -7.0 |  -9.3669 @ 1.0e-03 lr,    32.0 r/Kup
    109, 0000114130 steps @   1044/s: -10.5 |  -9.4235 @ 1.0e-03 lr,    29.3 r/Kup
+```
 
-After training for 3.9 minutes on 1536 cores this agent learns to defeat Atari Pong (reward >0).
+After training for 3.9 minutes on 1536 cores this agent learns to defeat Atari Pong (reward >0):
+
+![Training reward over time at 1536 cores](Training chart at 1536 cores.png)
+
+Note that the training reward is averaged over 2 second windows (see the blog post for more details). The test reward when played out over an entire game (first to 21 points) continues to increase with additional training time.
