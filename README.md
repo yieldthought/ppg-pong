@@ -52,4 +52,4 @@ Note that the training reward is averaged over 2 second windows (see the blog po
 
 ## Video
 
-An agent trained for 28 minutes on 1536 cores [looks like this](https://youtu.be/0Pu1TArOeRM).
+An agent trained for 28 minutes on 1536 cores [looks like this](https://youtu.be/wDWQxfDFozc).
